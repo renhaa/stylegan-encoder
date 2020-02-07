@@ -4,8 +4,6 @@
 ![cuDNN 7.3.1](https://img.shields.io/badge/cudnn-7.3.1-green.svg?style=plastic)
 ![License CC BY-NC](https://img.shields.io/badge/license-CC_BY--NC-green.svg?style=plastic)
 
-[StyleGAN2 port here](https://github.com/robertluxemburg/stylegan2encoder) by @robertluxemburg
-
 *This is my StyleGAN Encoder; there are many like it, but this one is mine. Thanks to @Puzer for the original, of which this is a fork, and to @SimJeg for the initial code that formed the basis of the ResNet model used here, and to @Pender for his fork as well!*
 
 ![Example image](./mona_example.jpg)
@@ -30,30 +28,6 @@ What I've added:
 9) Added support for stochastic weight averaging of StyleGAN checkpoints
 10) A [tutorial notebook](https://github.com/pbaylies/stylegan-encoder/blob/master/StyleGAN_Encoder_Tutorial.ipynb)!
 11) Follow @Puzer's instructions below for encoder usage as well, all of that still applies!
-
-New Features
- - early stopping
- - discriminator loss
- - composite masking
- - ggt and lbfgs optimizers
- - running average of best loss
- - sharpen input image
- - adaptive loss function option used from Google Research (see https://github.com/google-research/google-research/tree/master/robust_loss )
-
-Example presets:
-```
-L-BFGS Single
-python encode_images.py --optimizer=lbfgs --face_mask=True --iterations=6 --use_lpips_loss=0 --use_discriminator_loss=0 aligned_images generated_images latent_representations
-GGT Single
-python encode_images.py --optimizer=ggt --face_mask=True --iterations=30 --lr=0.2 --decay_rate=0.95 --decay_steps=6 --use_lpips_loss=0 --use_discriminator_loss=0 aligned_images generated_images latent_representations
-Adam Single
-python encode_images.py --optimizer=adam --lr=0.02 --face_mask=True --iterations=100 --use_lpips_loss=0 --use_discriminator_loss=0 aligned_images generated_images latent_representations
-Adam Batch
-python encode_images.py --optimizer=adam --lr=0.02 --decay_rate=0.95 --decay_steps=8 --face_mask=True --iterations=100 --batch_size=4 --early_stopping=True --early_stopping_threshold=0.25 --average_best_loss=0.5 --use_lpips_loss=0 --use_discriminator_loss=0 aligned_images generated_images latent_representations
-python encode_images.py --optimizer=adam --lr=0.02 --decay_rate=0.95 --decay_steps=6 --face_mask=True --iterations=100 --use_adaptive_loss=True --early_stopping_threshold=0.5 --average_best_loss=0.5 --use_lpips_loss=0 --use_discriminator_loss=0 --batch_size=4 --output_video=True aligned_images generated_images latent_representations
-Adam - Slow / Precise
-python encode_images.py --optimizer=adam --lr=0.02 --decay_rate=0.95 --decay_steps=6 --face_mask=True --iterations=400 --early_stopping=True --early_stopping_threshold=0.05 --average_best_loss=0.5 --use_lpips_loss=0 --use_discriminator_loss=0 aligned_images generated_images latent_representations
-```
 
 ```
 usage: encode_images.py [-h] [--data_dir DATA_DIR] [--mask_dir MASK_DIR]
