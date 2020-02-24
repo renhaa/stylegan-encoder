@@ -78,7 +78,7 @@ class PerceptualModel:
             self.detector = dlib.get_frontal_face_detector()
             LANDMARKS_MODEL_URL = 'http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2'
             landmarks_model_path = unpack_bz2(get_file('shape_predictor_68_face_landmarks.dat.bz2',
-                                                    LANDMARKS_MODEL_URL, cache_subdir='temp'))
+                                                    LANDMARKS_MODEL_URL, cache_dir='temp'))
             self.predictor = dlib.shape_predictor(landmarks_model_path)
 
     def compare_images(self,img1,img2):
